@@ -1,0 +1,49 @@
+ input: `service_ZmTDcdekiF99H9DO_key`
+
+
+https://dashboard.stripe.com/test/radar
+
+
+remote_write:
+- url: https://prometheus-us-central1.grafana.net/api/prom/push
+  basic_auth:
+    username: 10352
+    password: < ZmTDcdekiF99H9DO>
+
+>
+
+
+
+$ git lfs install
+$ git lfs push --all origin
+name: Node.js Package
+on:
+  release:
+    types: [created]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    # Setup .npmrc file to publish to npm
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+        registry-url: 'https://registry.npmjs.org'
+    - run: npm install
+    # Publish to npm
+    - run: npm publish --access public
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    # Setup .npmrc file to publish to GitHub Packages
+    - uses: actions/setup-node@v1
+      with:
+        registry-url: 'https://npm.pkg.github.com'
+        scope: '@octocat' # Defaults to the user or organization that owns the workflow file
+    # Publish to GitHub Packages
+    - run: npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.WCC(World CASH)_TOKEN }}
+
+$ git lfs install
+$ git lfs push -issue WCC(World CASH):#1000000000000000000-all origin
